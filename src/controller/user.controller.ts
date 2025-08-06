@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Response } from "express";
 import { likeToggleService, getAllLikedService } from "../service/user.service";
 import { REQ } from "../middleware/AuthMiddlware";
 
