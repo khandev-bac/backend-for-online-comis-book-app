@@ -1,6 +1,7 @@
 import express, { Request, Response } from "express"
 import { envField } from "./config/env"
 import authRouter from "./routes/auth.route"
+import userRouter from "./routes/user.route"
 const app = express()
 app.use(express.json())
 app.get("/", (req: Request, res: Response) => {
@@ -9,6 +10,7 @@ app.get("/", (req: Request, res: Response) => {
     })
 })
 app.use("/auth", authRouter)
+app.use("/user", userRouter)
 app.listen(envField.PORT, () => {
     console.log(`Server is running on port ${envField.PORT}`)
 })
