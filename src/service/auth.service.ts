@@ -29,7 +29,8 @@ export const Login = async (idToken: string) => {
         return {
             message: "Successfully account created",
             accessToken: tokens.accessToken,
-            refreshToken: tokens.refreshToken
+            refreshToken: tokens.refreshToken,
+            data: user
         }
     } catch (error: any) {
         console.error("AUTH_SERVICE_ERROR:", error.message);
