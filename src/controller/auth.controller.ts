@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 import { Login } from "../service/auth.service";
-
+export const check = async (req: Request, res: Response) => {
+    res.status(200).json({
+        message: "ok server is fine"
+    })
+}
 export const LoginController = async (req: Request, res: Response) => {
     try {
         const { idToken } = req.body
