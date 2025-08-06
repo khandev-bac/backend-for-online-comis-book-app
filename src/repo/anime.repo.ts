@@ -8,7 +8,6 @@ export const createAnime = async (create_anime: CreateAnime) => {
                 title: create_anime.title,
                 description: create_anime.description,
                 coverImage: create_anime.category,
-                animeImage: create_anime.animeImage,
                 category: create_anime.category
             }
         })
