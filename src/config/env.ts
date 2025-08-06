@@ -11,5 +11,6 @@ export const envField = {
     CLOUD_NAME: getEnv("CLOUD_NAME"),
     CLOUD_API_KEY: getEnv("CLOUD_API_KEY"),
     CLOUD_API_SECERT: getEnv("CLOUD_API_SECERT"),
-    DATABASE_URL: getEnv("DATABASE_URL")
+    DATABASE_URL: getEnv("DATABASE_URL"),
+    GOOGLE_CLIENT_ID: getEnv("GOOGLE_CLIENT_ID")
 }
