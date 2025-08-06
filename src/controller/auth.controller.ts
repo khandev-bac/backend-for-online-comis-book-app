@@ -8,11 +8,12 @@ export const LoginController = async (req: Request, res: Response) => {
         if (!idToken) {
             return res.status(400).json({ message: "idToken is required" });
         }
-        const { message, accessToken, refreshToken } = await Login(idToken)
+        const val = await Login(idToken)
         return res.status(200).json({
-            message: message,
-            accessToken: accessToken,
-            refreshToken: refreshToken
+            message: val.message,
+            accessToken: val.accessToken,
+            refreshToken: val.refreshToken,
+            user: val.data
         })
     } catch (error: any) {
         console.error("LOGIN_CONTROLLER_ERROR:", error);
