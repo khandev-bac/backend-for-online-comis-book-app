@@ -1,0 +1,16 @@
+services:
+  db:
+    container_name: kartoon
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=kartoonDB
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - kartoondata:/var/lib/postgresql/data
+
+volumes:
+  kartoondata:
