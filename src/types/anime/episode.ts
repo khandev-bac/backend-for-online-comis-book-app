@@ -4,5 +4,6 @@ export interface CreateEpisode {
     animeId: string;
 }
 export interface UpdateEpisode {
-    episodeNumber: number
+    episodeNumber?: number
+    animeImage?: string;
 }
