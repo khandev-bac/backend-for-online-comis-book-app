@@ -22,3 +22,31 @@ export const findByEmail = async (email: string) => {
         throw error
     }
 }
+//like anime by user 
+export const likeanime = async (userId: string, animeId: string) => {
+    try {
+        await prisma.userLiked.create({
+            data: {
+                userId: userId,
+                animeId: animeId
+            }
+        })
+        await prisma.anime.update({
+            where: { id: userId },
+            data: {
+                likeCount: {
+                    increment: 1,
+                }
+            }
+        })
+        return {
+            message: "Liked"
+        }
+    } catch (error: any) {
+        if (error.code === "P2002") {
+            throw new Error("Anime already liked by user");
+        }
+        console.log("REPO_LIKE_ERROR:", error.message);
+        throw error;
+    }
+}
