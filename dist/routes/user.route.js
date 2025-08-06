@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const user_controller_1 = require("../controller/user.controller");
+const AuthMiddlware_1 = require("../middleware/AuthMiddlware");
+const router = (0, express_1.Router)();
+router.use(AuthMiddlware_1.AuthMiddleware);
+router.post("/likeToggle/:animeId", user_controller_1.likeToggleController);
+router.get("/get-liked-anime", user_controller_1.getAllLikedAnimeController);
+exports.default = router;

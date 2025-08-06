@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const episode_controller_1 = require("../controller/episode.controller");
+const router = (0, express_1.Router)();
+router.post("/", episode_controller_1.createEpisodeController);
+router.get("/:animeId", episode_controller_1.getEpisodesByAnimeIdController);
+router.get("/:episodeId", episode_controller_1.getEpisodeByIdController);
+router.put("/:episodeId", episode_controller_1.updateEpisodeController);
+router.delete("/:episodeId", episode_controller_1.deleteEpisodeController);
+exports.default = router;
