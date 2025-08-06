@@ -50,3 +50,28 @@ export const likeanime = async (userId: string, animeId: string) => {
         throw error;
     }
 }
+export const unLikeanime = async (userId: string, animeId: string) => {
+    try {
+        await prisma.userLiked.delete({
+            where: {
+                userId_animeId: {
+                    userId: userId,
+                    animeId: animeId
+                }
+            }
+        })
+        await prisma.anime.update({
+            where: { id: animeId },
+            data: {
+                likeCount: {
+                    decrement: 1
+                }
+            }
+
+        })
+        return { message: "Unlike" }
+    } catch (error: any) {
+        console.log("REPO_UNLIKE_ERROR:", error.message);
+
+    }
+}
