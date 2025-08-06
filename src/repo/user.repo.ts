@@ -87,3 +87,19 @@ export const getUserLikedAnime = async (id: string) => {
         throw error;
     }
 }
+export const hasUserLiked = async (userId: string, animeId: string) => {
+    try {
+        const like = await prisma.userLiked.findUnique({
+            where: {
+                userId_animeId: {
+                    userId: userId,
+                    animeId: animeId
+                }
+            }
+        })
+        return !!like
+    } catch (error: any) {
+        console.log("REPO_HAS_LIKED_ERROR:", error.message);
+        throw error;
+    }
+}
