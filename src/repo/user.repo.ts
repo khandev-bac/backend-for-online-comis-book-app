@@ -76,10 +76,10 @@ export const unLikeanime = async (userId: string, animeId: string) => {
     }
 }
 
-export const getUserLikedAnime = async (id: string) => {
+export const getUserLikedAnime = async (userId: string) => {
     try {
         return await prisma.userLiked.findMany({
-            where: { userId: id },
+            where: { userId: userId },
             include: { anime: true }
         })
     } catch (error: any) {
