@@ -1,8 +1,15 @@
 import { Request, Response } from "express";
 import { Login } from "../service/auth.service";
+import { prisma } from "../config/prisma";
 export const check = async (req: Request, res: Response) => {
     res.status(200).json({
         message: "ok server is fine"
+    })
+}
+export const checkUser = async (req: Request, res: Response) => {
+    const user = await prisma.user.findMany()
+    return res.status(200).json({
+        user: user
     })
 }
 export const LoginController = async (req: Request, res: Response) => {

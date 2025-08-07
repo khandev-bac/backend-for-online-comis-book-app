@@ -1,3 +1,5 @@
+version: '3.8'
+
 services:
   db:
     container_name: kartoon
@@ -11,6 +13,20 @@ services:
       - "5432:5432"
     volumes:
       - kartoondata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: kartoon-app
+    restart: always
+    ports:
+      - "8000:8000" # External:Internal port mapping
+    environment:
+      - DATABASE_URL=postgresql://postgres:postgres@db:5432/kartoonDB
+    depends_on:
+      - db
+    volumes:
+      - .:/app
+    working_dir: /app
 
 volumes:
   kartoondata:
