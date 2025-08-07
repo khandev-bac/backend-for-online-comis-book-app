@@ -1,6 +1,18 @@
-version: '3.8'
-
 services:
+
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: backend-kartoon
+    ports:
+      - "8000:8000"
+    depends_on:
+      - kartoon
+    volumes:
+      - ./:/app
+    networks:
+      - "kartoon-network"
   db:
     container_name: kartoon
     image: postgres
@@ -13,20 +25,12 @@ services:
       - "5432:5432"
     volumes:
       - kartoondata:/var/lib/postgresql/data
-
-  app:
-    build: .
-    container_name: kartoon-app
-    restart: always
-    ports:
-      - "8000:8000" # External:Internal port mapping
-    environment:
-      - DATABASE_URL=postgresql://postgres:postgres@db:5432/kartoonDB
-    depends_on:
-      - db
-    volumes:
-      - .:/app
-    working_dir: /app
+    networks:
+      - "kartoon-network"
 
 volumes:
   kartoondata:
+networks:
+  kartoon-network:
+
+
